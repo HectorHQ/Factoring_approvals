@@ -328,6 +328,7 @@ if list_orders is not None:
         df = load_dataframe(list_orders)
         df['Invoice'] = df['Order'].astype('str')
         count_invoices = df.shape
+        df
         st.write(f'{count_invoices[0]} Invoices to Update')
         
         with col2:
