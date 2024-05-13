@@ -62,7 +62,7 @@ def Factored_Requested(headers,order_number):
     }
 
     response = requests.post('https://api.getnabis.com/graphql/admin', headers=headers, json=json_data)
-    return response.json()
+    return response
 
 
 # Requested Approved
@@ -86,7 +86,7 @@ def Update_factored_Invoices_Approved(headers,invoice_data):
     }
 
     response = requests.post('https://api.getnabis.com/graphql/admin', headers=headers, json=json_data)
-    return response.json()
+    return response
 
 # Requested Rejected
 def Update_factored_Invoices_Rejected(headers,invoice_data):
@@ -109,7 +109,7 @@ def Update_factored_Invoices_Rejected(headers,invoice_data):
     }
 
     response = requests.post('https://api.getnabis.com/graphql/admin', headers=headers, json=json_data)
-    return response.json()
+    return response
 
 # Factored Invoices Approved tab to be flipped to Yes Search function
 def factored_Approved_tab(headers,order_number):
@@ -141,7 +141,7 @@ def factored_Approved_tab(headers,order_number):
     }
 
     response = requests.post('https://api.getnabis.com/graphql/admin', headers=headers, json=json_data)
-    return response.json()
+    return response
 
 # Flipping invoices to Yes on the Approved tab
 def Factored_Approved_Tab_Yes(headers,invoice_data):
@@ -164,7 +164,7 @@ def Factored_Approved_Tab_Yes(headers,invoice_data):
     }
 
     response = requests.post('https://api.getnabis.com/graphql/admin', headers=headers, json=json_data)
-    return response.json()
+    return response
 
 
 # Ready for reserve release tab
@@ -204,7 +204,7 @@ def Factored_Ready_for_release(headers,order_number):
     }
 
     response = requests.post('https://api.getnabis.com/graphql/admin', headers=headers, json=json_data)
-    return response.json()
+    return response
 
 # Flipping to Yes invoices ready for release
 def Factored_Ready_to_Release_Approved(headers,invoice_data):
@@ -227,7 +227,7 @@ def Factored_Ready_to_Release_Approved(headers,invoice_data):
     }
 
     response = requests.post('https://api.getnabis.com/graphql/admin', headers=headers, json=json_data)
-    return response.json()
+    return response
 
 
 def load_excel(file_path):
@@ -244,7 +244,8 @@ def main_approved(invoices):
     for order in invoices:
         try:
             invoice_data = Factored_Requested(headers,order)
-            Update_factored_Invoices_Approved(headers,invoice_data)
+            response_approved = Update_factored_Invoices_Approved(headers,invoice_data)
+            
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
@@ -254,7 +255,7 @@ def main_rejected(invoices):
     for order in invoices:
         try:    
             invoice_data = Factored_Requested(headers,order)
-            Update_factored_Invoices_Rejected(headers,invoice_data)
+            response_rejected = Update_factored_Invoices_Rejected(headers,invoice_data)
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
@@ -264,7 +265,7 @@ def main_flip_to_yes_approved_tab(invoices):
     for order in invoices:
         try:
             invoice_data = factored_Approved_tab(headers,order)
-            Factored_Approved_Tab_Yes(headers,invoice_data)
+            response_yes = Factored_Approved_Tab_Yes(headers,invoice_data)
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
@@ -274,7 +275,7 @@ def main_flip_ready_for_release(invoices):
     for order in invoices:
         try:
             invoice_data = Factored_Ready_for_release(headers,order)
-            Factored_Ready_to_Release_Approved(headers,invoice_data)
+            response_released_approved = Factored_Ready_to_Release_Approved(headers,invoice_data)
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
