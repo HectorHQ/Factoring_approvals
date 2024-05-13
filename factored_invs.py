@@ -264,7 +264,10 @@ def main_approved(invoices):
             
             st.write(f'{order} Processed')
         except:
+            
             st.write(f'{order} Failed, try again')
+            st.write(invoice_data.text)
+            st.write(response_approved.text)
             continue
 
 def main_rejected(invoices):
@@ -275,6 +278,8 @@ def main_rejected(invoices):
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
+            st.write(invoice_data.text)
+            st.write(response_rejected.text)
             continue
 
 def main_flip_to_yes_approved_tab(invoices):
@@ -285,6 +290,8 @@ def main_flip_to_yes_approved_tab(invoices):
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
+            st.write(invoice_data.text)
+            st.write(response_yes.text)
             continue
 
 def main_flip_ready_for_release(invoices):
@@ -295,6 +302,8 @@ def main_flip_ready_for_release(invoices):
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
+            st.write(invoice_data.text)
+            st.write(response_released_approved.text)
             continue
 
 
