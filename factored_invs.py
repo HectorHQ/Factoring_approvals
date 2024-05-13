@@ -240,6 +240,22 @@ def load_excel(file_path):
     return df
 
 
+def load_dataframe(file):
+    """
+    Loads the uploaded file into a Pandas DataFrame.
+    """
+
+    file_extension = file.name.split(".")[-1]
+    
+    if file_extension == "csv":
+        df = pd.read_csv(file)
+
+    elif file_extension == "xlsx":
+        df = pd.read_excel(file)
+
+    return df
+
+
 def main_approved(invoices):
     for order in invoices:
         try:
@@ -288,7 +304,8 @@ with col1:
     
 
 if list_orders is not None:
-        df = load_excel(list_orders)
+        #df = load_excel(list_orders)
+        df = load_dataframe(list_orders)
         df['Invoice'] = df['Order'].astype('str')
         count_invoices = df.shape
         st.write(f'{count_invoices[0]} Invoices to Update')
