@@ -324,11 +324,12 @@ with col1:
     
 
 if list_orders is not None:
-        #df = load_excel(list_orders)
+        df_1 = load_excel(list_orders)
         df = load_dataframe(list_orders)
         df['Invoice'] = df['Order'].astype('str')
         count_invoices = df.shape
         df
+        df_1
         st.write(f'{count_invoices[0]} Invoices to Update')
         
         with col2:
