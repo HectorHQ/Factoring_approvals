@@ -262,7 +262,7 @@ def main_approved(invoices):
             invoice_data = Factored_Requested(headers,order)
             st.write(invoice_data.text)
             st.write(invoice_data.status_code)
-            response_approved = Update_factored_Invoices_Approved(headers,invoice_data)
+            response_approved = Update_factored_Invoices_Approved(headers,invoice_data.json())
             st.write(response_approved.text)
             st.write(response_approved.status_code)
             st.write(f'{order} Processed')
@@ -279,7 +279,7 @@ def main_rejected(invoices):
     for order in invoices:
         try:    
             invoice_data = Factored_Requested(headers,order)
-            response_rejected = Update_factored_Invoices_Rejected(headers,invoice_data)
+            response_rejected = Update_factored_Invoices_Rejected(headers,invoice_data.json())
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
@@ -293,7 +293,7 @@ def main_flip_to_yes_approved_tab(invoices):
     for order in invoices:
         try:
             invoice_data = factored_Approved_tab(headers,order)
-            response_yes = Factored_Approved_Tab_Yes(headers,invoice_data)
+            response_yes = Factored_Approved_Tab_Yes(headers,invoice_data.json())
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
@@ -307,7 +307,7 @@ def main_flip_ready_for_release(invoices):
     for order in invoices:
         try:
             invoice_data = Factored_Ready_for_release(headers,order)
-            response_released_approved = Factored_Ready_to_Release_Approved(headers,invoice_data)
+            response_released_approved = Factored_Ready_to_Release_Approved(headers,invoice_data.json())
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
