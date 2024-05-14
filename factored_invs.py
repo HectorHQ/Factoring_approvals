@@ -260,19 +260,12 @@ def main_approved(invoices):
     for order in invoices:
         try:
             invoice_data = Factored_Requested(headers,order)
-            st.write(invoice_data.text)
-            st.write(invoice_data.status_code)
             response_approved = Update_factored_Invoices_Approved(headers,invoice_data.json())
-            st.write(response_approved.text)
-            st.write(response_approved.status_code)
+            
             st.write(f'{order} Processed')
         except:
-            
             st.write(f'{order} Failed, try again')
-            st.write(invoice_data.text)
-            st.write(invoice_data.status_code)
-            st.write(response_approved.text)
-            st.write(response_approved.status_code)
+            
             continue
 
 def main_rejected(invoices):
@@ -283,9 +276,6 @@ def main_rejected(invoices):
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
-            st.write(invoice_data.text)
-            st.write(invoice_data.status_code)
-            st.write(response_rejected.text)
             st.write(response_rejected.status_code)
             continue
 
@@ -297,10 +287,7 @@ def main_flip_to_yes_approved_tab(invoices):
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
-            st.write(invoice_data.text)
-            st.write(invoice_data.status_code)
-            st.write(response_yes.text)
-            st.write(response_yes.status_code)
+          
             continue
 
 def main_flip_ready_for_release(invoices):
@@ -311,10 +298,7 @@ def main_flip_ready_for_release(invoices):
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
-            st.write(invoice_data.text)
-            st.write(invoice_data.status_code)
-            st.write(response_released_approved.text)
-            st.write(response_released_approved.status_code)
+           
             continue
 
 
