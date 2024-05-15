@@ -276,7 +276,6 @@ def main_rejected(invoices):
             st.write(f'{order} Processed')
         except:
             st.write(f'{order} Failed, try again')
-            st.write(response_rejected.status_code)
             continue
 
 def main_flip_to_yes_approved_tab(invoices):
